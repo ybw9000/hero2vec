@@ -55,7 +55,7 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 # Output
 
-Output contains a graph showing the embeddings (after PCA to 2D) of the heroes, a numpy array contains the embeddings and a graph of the training loss. All under `output` folder.
+Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`. All under `output` folder.
 
 # Repo Structure
 
@@ -83,16 +83,16 @@ The directory structure for the repo looks like this:
 
 Under `setup` folder, run:
 
-bash install.sh
+`bash install.sh`
 
 if issues occurs with installing pytorch, please refer to http://pytorch.org/ for installation of pytorch. Then run:
 
-bash install_without_torch.sh
+`bash install_without_torch.sh`
 
 # Usage
 
 run:
 
-python train.py ./input/teams.csv ./input/hero2ix.csv
+`python train.py ./input/teams.csv ./input/hero2ix.csv`
 
-Alternatively, run train.ipynb for a demo.
+Alternatively, run `train.ipynb` for a demo.
