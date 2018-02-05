@@ -11,7 +11,7 @@ A Machine learning model to understand the game design and player experience of 
 7. [Output](README.md#output)
 8. [Repo Structure](README.md#repo-structure)
 9. [Setup](README.md#setup)
-10. [Usage](Usage.md#usage)
+10. [Usage](README.md#usage)
 
 # Introduction
 
@@ -82,12 +82,17 @@ The directory structure for the repo looks like this:
 # Setup
 
 Under `setup` folder, run:
+
 bash install.sh
 
 if issues occurs with installing pytorch, please refer to http://pytorch.org/ for installation of pytorch. Then run:
+
 bash install_without_torch.sh
 
 # Usage
 
 run:
+
 python train.py ./input/teams.csv ./input/hero2ix.csv
+
+Alternatively, run train.ipynb for a demo.
