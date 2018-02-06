@@ -122,17 +122,17 @@ def main():
 
     # check test accuracy
     print('accuracy: ', accuracy(model, dataloader=loader_test,
-                                 batch_size=batch_size, hero2ix=hero2ix, gpu=False))
+                                 batch_size=batch_size, gpu=False))
+
+    # save embeddings as numpy arrays
+    output_dir = './output/hero_embeddings.npy'
+    save_embeddings(model, filename=output_dir)
 
     # plot loss vs epoch
     plot_loss(losses)
 
     # project embeddings to 2d plane
     plot_embeddings(model, hero2ix)
-
-    # save embeddings as numpy arrays
-    output_dir = './output/hero_embeddings.npy'
-    save_embeddings(model, filename=output_dir)
 
 if __name__ == '__main__':
     main()
