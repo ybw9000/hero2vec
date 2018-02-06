@@ -23,11 +23,11 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 1. The dataset is not large enough. We only have the results from less than 300 games.
 
-2. The dataset consist of a lot of categorical features, like team compositions and maps. A simple one-hot encoding can result in high dimensional sparse input and unfortunately we don't have enough data to conquer the `curse of dimensionality`. Moreover, the team-composition/map plays an extremely important role in the game, so we can't simply drop it.
+2. The dataset consist of a lot of categorical features, like team compositions and maps. A simple one-hot encoding can result in high dimensional sparse input and unfortunately we don't have enough data to conquer the **curse of dimensionality**. Moreover, the team-composition/map plays an extremely important role in the game, so we can't simply drop it.
 
 # Motivations
 
-1. Just like humans (or words), heroes have their own characteristics and also share some `similarities`. So rather than one-hot orthogonal vectors, they can be represented by `distributed representations`. What's more, just like words in a sentence, heroes in a team also have strong `co-occurrence`. So heroes can be modeled in a very similar fashion as `word2vec`, i.e., `hero2vec`.
+1. Just like humans (or words), heroes have their own characteristics and also share some **similarities**. So rather than one-hot orthogonal vectors, they can be represented by **distributed representations**. What's more, just like words in a sentence, heroes in a team also have strong **co-occurrence**. So heroes can be modeled in a very similar fashion as **word2vec**, i.e., **hero2vec**.
 
 2. The team compositions are widely available online. This is independent of my own dataset and can serve the training of hero2vec just like Wiki corpus used for word2vec.
 
@@ -37,9 +37,9 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 # Model Selection
 
-1. As mentioned above, heroes in a team have strong co-occurrence, i.e., the `joint probability` P(h1, h2.., h6) (6 heroes in a team) is high. Written as P(h1|h2..h6)P(h2..h6), the objective function is to maximize P(h1|h2..h6) with h2..h6 sampled from the dataset. h1 doesn't have to be a specific hero, any hero in the team can be this center hero. This is very suitable for the `Continuous Bag of Words (CBOW)` model, since the attributes of a team (or the 5 context heroes) are really a sum of the attributes of all the individuals, unlike the sum of context words in a sentence is not always intuitive.
+1. As mentioned above, heroes in a team have strong co-occurrence, i.e., the **joint probability** P(h1, h2.., h6) (6 heroes in a team) is high. Written as P(h1|h2..h6)P(h2..h6), the objective function is to maximize P(h1|h2..h6) with h2..h6 sampled from the dataset. h1 doesn't have to be a specific hero, any hero in the team can be this center hero. This is very suitable for the **Continuous Bag of Words (CBOW)** model, since the attributes of a team (or the 5 context heroes) are really a sum of the attributes of all the individuals, unlike the sum of context words in a sentence is not always intuitive.
 
-2. The map in the game can be modeled in a similar way. The `conditional probability` P(map|team) is high. So this is a supervised learning task and the weight of the last affine layer of the classifier is the embeddings for the maps, i.e., map2vec.
+2. The map in the game can be modeled in a similar way. The **conditional probability** P(map|team) is high. So this is a supervised learning task and the weight of the last affine layer of the classifier is the embeddings for the maps, i.e., map2vec.
 
 # Model Architecture
 
