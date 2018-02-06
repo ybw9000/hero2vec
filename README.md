@@ -111,18 +111,10 @@ if issues occurs with installing pytorch, please refer to http://pytorch.org/ fo
 
 # Usage
 
-1. hero2vec
-
-run:
-
-`python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
+1. hero2vec. run: `python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
 
 Alternatively, run `train_hero.ipynb` for a demo.
 
-2. map2vec
-
-run:
-
-`python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
+2. map2vec. run: `python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
 
 Alternatively, run `train_map.ipynb` for a demo.
