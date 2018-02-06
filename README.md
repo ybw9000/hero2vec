@@ -39,7 +39,7 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 1. As mentioned above, heroes in a team have strong co-occurrence, i.e., the **joint probability** P(h1, h2.., h6) (6 heroes in a team) is high. Written as P(h1|h2..h6)P(h2..h6), the objective function is to maximize P(h1|h2..h6) with h2..h6 sampled from the dataset. h1 doesn't have to be a specific hero, any hero in the team can be this center hero. This is very suitable for the **Continuous Bag of Words (CBOW)** model, since the attributes of a team (or the 5 context heroes) are really a sum of the attributes of all the individuals, unlike the sum of context words in a sentence is not always intuitive.
 
-2. The map in the game can be modeled in a similar way. The **conditional probability** P(map|team) is high. So this is a supervised learning task and the weight of the last affine layer of the classifier is the embeddings for the maps, i.e., map2vec.
+2. The map in the game can be modeled in a similar way. The **conditional probability** P(map|team) is high. So this is a supervised learning task and the weight of the last affine layer of the classifier is the embeddings for the maps, i.e., **map2vec**.
 
 # Model Architecture
 
@@ -113,8 +113,8 @@ if issues occurs with installing pytorch, please refer to http://pytorch.org/ fo
 
 1. hero2vec. run: `python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
 
-Alternatively, run `train_hero.ipynb` for a demo.
+Alternatively, open `train_hero.ipynb` with Jupyter Notebook for a demo.
 
 2. map2vec. run: `python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
 
-Alternatively, run `train_map.ipynb` for a demo.
+Alternatively, open `train_map.ipynb` for a demo.
