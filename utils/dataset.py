@@ -75,7 +75,7 @@ class MapDataFrameIterator(Dataset):
         """
         #locate the team and map
         row = self.df.iloc[idx]
-        team, map_name = list[row[1:]], row[0]
+        team, map_name = list(row[1:]), row[0]
 
         team_idxs = list(map(lambda x: int(self.hero2ix[x]), team))
         map_idx = int(self.map2ix[map_name])

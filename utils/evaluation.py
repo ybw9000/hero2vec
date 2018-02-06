@@ -60,7 +60,7 @@ def make_plot_color(x, y, hero2ix):
     for name, i in hero2ix.items():
         ax.annotate(name, (x[i], y[i]), fontsize=18)
     plt.show()
-    fig.savefig('./output/embddings_2d.png')
+    fig.savefig('./output/hero/hero_embddings_2d.png')
 
 def make_plot_color_map(x, y, map2ix):
 
@@ -74,10 +74,13 @@ def make_plot_color_map(x, y, map2ix):
             defenses.append(idx)
         else:
             controls.append(idx)
+
+    # plot attack, defense, controls map respectively
     att_x, att_y = x[attacks], y[attacks]
     den_x, den_y = x[defenses], y[defenses]
     con_x, con_y = x[controls], y[controls]
-    plt.figure(figsize=(16, 12), dpi = 100)
+
+    fig = plt.figure(figsize=(16, 12), dpi = 100)
     ax = plt.subplot(111)
     marker_size = 200
     ax.scatter(att_x, att_y, c= 'tomato', s=marker_size)
@@ -89,7 +92,7 @@ def make_plot_color_map(x, y, map2ix):
         ax.annotate(name, (x[i], y[i]))
 
     plt.show()
-    fig.savefig('./output/embddings_2d.png')
+    fig.savefig('./output/map/map_embddings_2d.png')
 
 def plot_embeddings(model, names):
     embeddings = model.embeddings.weight.cpu().data.numpy()
@@ -114,3 +117,12 @@ def plot_embeddings_map(model, names):
     embeddings_2d = pca.fit_transform(embeddings)
     x, y = embeddings_2d[:, 0], embeddings_2d[:, 1]
     make_plot_color_map(x, y, names)
+
+def plot_loss(losses, directory):
+    fig = plt.figure(figsize=(8, 6), dpi=100)
+    ax = plt.subplot(111)
+    ax.plot(losses)
+    ax.set_xlabel('Epochs', fontsize=24)
+    ax.set_ylabel('Train_loss', fontsize=24)
+    fig.savefig(directory)
+    plt.close()

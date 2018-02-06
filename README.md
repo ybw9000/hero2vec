@@ -17,13 +17,13 @@ A Machine learning model to understand the game design and player experience of 
 
 The goal of this project is to predict the outcome (winning-rate) of a team in a video game, particularly multiplayer online games like Overwatch/Dota2/LoL, given the status at a certain time in the game, like kills/deaths/team-compositions, etc.
 
-This repo focuses on part of the project, namely, modeling the team compositions and its building blocks, the heroes in the game.
+This repo focuses on part of the project, namely, modeling the team compositions (or the heroes) and maps in the game.
 
 # Challenges
 
 1. The dataset is not large enough. We only have the results from less than 300 games.
 
-2. The dataset consist of a lot of categorical features, like team compositions and maps. A simple one-hot encoding can result in high dimensional sparse input and unfortunately we don't have enough data to conquer the `curse of dimensionality`. Moreover, the team composition plays an extremely important role in the game, so we can't simply drop it.
+2. The dataset consist of a lot of categorical features, like team compositions and maps. A simple one-hot encoding can result in high dimensional sparse input and unfortunately we don't have enough data to conquer the `curse of dimensionality`. Moreover, the team-composition/map plays an extremely important role in the game, so we can't simply drop it.
 
 # Motivations
 
@@ -32,6 +32,8 @@ This repo focuses on part of the project, namely, modeling the team compositions
 2. The team compositions are widely available online. This is independent of my own dataset and can serve the training of hero2vec just like Wiki corpus used for word2vec.
 
 3. By modeling heroes in the game by distributed representations, I can not only address the curse of dimensionality, but also gain valuable information on the game designs of the heroes as well as the how the players appreciate these designs.
+
+4. All the above motivations apply to the maps similarly.
 
 # Model Selection
 
@@ -51,34 +53,52 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 1. `teams.csv` under `input` folder. This is a csv table that contains the team composition. Can be easily changed to other team-based games like Dota2/LoL.
 
-2. `hero2ix.csv` under `input` folder. This is csv table that maps the input hero names to their int ID and further to the embeddings. Can be easily customized in case different name is used for the same hero, e.g., 'dva' (used in this one) is written as 'D.Va'.
+2. `map_teams.csv` under `input` folder. This the csv table that contains both the team and map composition.
+
+3. `hero2ix.csv` under `input` folder. This is csv table that maps the input hero names to their int ID and further to the embeddings. Can be easily customized in case different name is used for the same hero, e.g., 'dva' (used in this one) is written as 'D.Va'.
+
+4. `map2ix.csv` under `input` folder. This is csv table that maps the input map names to their int ID and further to the embeddings.
 
 # Output
 
-Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`. All under `output` folder.
+1. `hero` folder
+Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `hero_embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`.
+
+2. `map` folder
+Output contains a graph showing the embeddings (after PCA to 2D) of the maps `map_embeddings_2d.png`, a numpy array contains the embeddings `map_embeddings.npy` and a graph of the training loss `loss_history.png`.
 
 # Repo Structure
 
 The directory structure for the repo looks like this:
 
     ├── README.md
-    ├── train.py
-    ├── train.ipynb
+    ├── train_hero.py
+    ├── train_hero.ipynb
+    ├── train_map.py
+    ├── train_map.ipynb
     ├── setup
     │   └── install.sh
     │   └── install_without_torch.sh
     ├── model
     │   └── hero2vec.py
+    │   └── map2vec.py
     ├── utils
     │   └── dataset.py
     │   └── evaluation.py
     ├── input
     │   └── hero2ix.csv
+    │   └── map2ix.csv
     │   └── teams.csv
+    │   └── map_teams.csv
     ├── output
-        └── embeddings_2d.png
-        └── hero_embeddings.npy
-        └── loss_history.npy
+        └── hero
+            └── hero_embeddings_2d.png
+            └── hero_embeddings.npy
+            └── loss_history.npy
+        └── map
+            └── map_embeddings_2d.png
+            └── map_embeddings.npy
+            └── loss_history.npy
 # Setup
 
 Under `setup` folder, run:
@@ -91,8 +111,18 @@ if issues occurs with installing pytorch, please refer to http://pytorch.org/ fo
 
 # Usage
 
+1. hero2vec
+
 run:
 
-`python train.py ./input/teams.csv ./input/hero2ix.csv`
+`python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
 
-Alternatively, run `train.ipynb` for a demo.
+Alternatively, run `train_hero.ipynb` for a demo.
+
+2. map2vec
+
+run:
+
+`python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
+
+Alternatively, run `train_map.ipynb` for a demo.
