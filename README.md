@@ -33,13 +33,13 @@ This repo focuses on part of the project, namely, modeling the team compositions
 
 3. By modeling heroes in the game by distributed representations, I can not only address the curse of dimensionality, but also gain valuable information on the game designs of the heroes as well as the how the players appreciate these designs.
 
-4. All the above motivations apply to the maps similarly.
+4. All the above motivations apply to the maps similarly, i.e., **map2vec**.
 
 # Model Selection
 
-1. As mentioned above, heroes in a team have strong co-occurrence, i.e., the **joint probability** P(h1, h2.., h6) (6 heroes in a team) is high. Written as P(h1|h2..h6)P(h2..h6), the objective function is to maximize P(h1|h2..h6) with h2..h6 sampled from the dataset. h1 doesn't have to be a specific hero, any hero in the team can be this center hero. This is very suitable for the **Continuous Bag of Words (CBOW)** model, since the attributes of a team (or the 5 context heroes) are really a sum of the attributes of all the individuals, unlike the sum of context words in a sentence is not always intuitive.
+1. As mentioned above, heroes in a team have strong co-occurrence, i.e., the conditional probability P(h1|h2.., h6) (6 heroes in a team) is high. h1 doesn't have to be a specific hero, any hero in the team can be this center hero. This is very suitable for the **Continuous Bag of Words (CBOW)** model, since the attributes of a team (or the 5 context heroes) are really a sum of the attributes of all the individuals, unlike the sum of context words in a sentence is not always intuitive.
 
-2. The map in the game can be modeled in a similar way. The **conditional probability** P(map|team) is high. So this is a supervised learning task and the weight of the last affine layer of the classifier is the embeddings for the maps, i.e., **map2vec**.
+2. The map in the game can be modeled in a similar way. The conditional probability P(map|team) is high. So the weight of the last affine layer of the classifier is the embeddings for the maps.
 
 # Model Architecture
 
