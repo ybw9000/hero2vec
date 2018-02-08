@@ -62,10 +62,14 @@ This repo focuses on part of the project, namely, modeling the team compositions
 # Output
 
 1. `hero` folder
-Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `hero_embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`.
+Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `hero_embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`. For example, the hero embeddings:
+
+<img src="https://github.com/ybw9000/hero2vec/blob/master/output/hero/hero_embddings_2d.png" align="center">
 
 2. `map` folder
-Output contains a graph showing the embeddings (after PCA to 2D) of the maps `map_embeddings_2d.png`, a numpy array contains the embeddings `map_embeddings.npy` and a graph of the training loss `loss_history.png`.
+Output contains a graph showing the embeddings (after PCA to 2D) of the maps `map_embeddings_2d.png`, a numpy array contains the embeddings `map_embeddings.npy` and a graph of the training loss `loss_history.png`. For example, the map embeddings:
+
+<img src="https://github.com/ybw9000/hero2vec/blob/master/output/map/map_embddings_2d.png" align="center">
 
 # Repo Structure
 
