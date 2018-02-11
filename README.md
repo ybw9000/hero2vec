@@ -83,9 +83,11 @@ The directory structure for the repo looks like this:
     │   └── install.sh
     │   └── install_without_torch.sh
     ├── model
+    │   └── __init__.py    
     │   └── hero2vec.py
     │   └── map2vec.py
     ├── utils
+    │   └── __init__.py
     │   └── dataset.py
     │   └── evaluation.py
     │   └── prediction.py
