@@ -1,4 +1,5 @@
 import sys
+import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -118,6 +119,10 @@ def main():
     # save embeddings as numpy arrays
     output_dir = './output/hero/hero_embeddings.npy'
     save_embeddings(model, filename=output_dir)
+
+    # pickle model
+    pickle_dir = './output/hero/model.p'
+    pickle.dump(obj=model, file=open(pickle_dir, 'wb'))
 
     # plot loss vs epoch
     plot_loss(losses, './output/hero/loss_hitory.png')

@@ -62,12 +62,12 @@ This repo focuses on part of the project, namely, modeling the team compositions
 # Output
 
 1. `hero` folder
-Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `hero_embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy` and a graph of the training loss `loss_history.png`. For example, the hero embeddings:
+Output contains a graph showing the embeddings (after PCA to 2D) of the heroes `hero_embeddings_2d.png`, a numpy array contains the embeddings `hero_embeddings.npy`, a graph of the training loss `loss_history.png` and pickled model `model.p`. For example, the `hero_embeddings_2d.png` looks like:
 
 <img src="https://github.com/ybw9000/hero2vec/blob/master/output/hero/hero_embddings_2d.png" align="center">
 
 2. `map` folder
-Output contains a graph showing the embeddings (after PCA to 2D) of the maps `map_embeddings_2d.png`, a numpy array contains the embeddings `map_embeddings.npy` and a graph of the training loss `loss_history.png`. For example, the map embeddings:
+Output contains a graph showing the embeddings (after PCA to 2D) of the maps `map_embeddings_2d.png`, a numpy array contains the embeddings `map_embeddings.npy` and a graph of the training loss `loss_history.png`. For example, the `map_embeddings_2d.png` looks like:
 
 <img src="https://github.com/ybw9000/hero2vec/blob/master/output/map/map_embddings_2d.png" align="center">
 
@@ -80,6 +80,7 @@ The directory structure for the repo looks like this:
     ├── train_hero.ipynb
     ├── train_map.py
     ├── train_map.ipynb
+    ├── inference.py
     ├── setup
     │   └── install.sh
     │   └── install_without_torch.sh
@@ -89,16 +90,18 @@ The directory structure for the repo looks like this:
     ├── utils
     │   └── dataset.py
     │   └── evaluation.py
+    │   └── prediction.py
     ├── input
     │   └── hero2ix.csv
     │   └── map2ix.csv
     │   └── teams.csv
     │   └── map_teams.csv
-    ├── output
-        └── hero
-            └── hero_embeddings_2d.png
-            └── hero_embeddings.npy
-            └── loss_history.npy
+    └── output
+        ├── hero
+        │   └── hero_embeddings_2d.png
+        │   └── hero_embeddings.npy
+        │   └── loss_history.npy
+        │   └── model.p
         └── map
             └── map_embeddings_2d.png
             └── map_embeddings.npy
@@ -115,10 +118,8 @@ if issues occurs with installing pytorch, please refer to http://pytorch.org/ fo
 
 # Usage
 
-1. hero2vec. run: `python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
+1. Train hero2vec. run: `python train_hero.py ./input/teams.csv ./input/hero2ix.csv`
 
-Alternatively, open `train_hero.ipynb` with Jupyter Notebook for a demo.
+2. Train map2vec. run: `python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
 
-2. map2vec. run: `python train_map.py ./input/map_teams.csv ./input/hero2ix.csv ./input/map2ix.csv`
-
-Alternatively, open `train_map.ipynb` for a demo.
+3. Predict the center hero given five other heroes. run: `python inference.py <heroes>`. `<heroes>` contains the hero names of five known members. For example: `python inference.py dva genji tracer lucio winston`. Note: hero names must be in the `hero` column in `hero2ix.csv` in `input` folder.
