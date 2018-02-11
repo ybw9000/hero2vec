@@ -77,9 +77,7 @@ The directory structure for the repo looks like this:
 
     ├── README.md
     ├── train_hero.py
-    ├── train_hero.ipynb
     ├── train_map.py
-    ├── train_map.ipynb
     ├── inference.py
     ├── setup
     │   └── install.sh
